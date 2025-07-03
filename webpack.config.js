@@ -44,9 +44,10 @@ Encore
     // Displays build status system notifications to the user
     // .enableBuildNotifications()
 
-    .enableSourceMaps(!Encore.isProduction())
+    .enableSourceMaps(false)
     // enables hashed filenames (e.g. app.abc123.css)
     .enableVersioning(Encore.isProduction())
+    .enablePostCssLoader()
 
     // configure Babel
     // .configureBabel((config) => {
@@ -57,6 +58,10 @@ Encore
     .configureBabelPresetEnv((config) => {
         config.useBuiltIns = 'usage';
         config.corejs = '3.38';
+    })
+
+    .configureWatchOptions(watchOptions => {
+        watchOptions.ignored = /node_modules|public\/build|vendor/;
     })
 
     // enables Sass/SCSS support
