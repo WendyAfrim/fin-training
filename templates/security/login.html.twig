@@ -6,7 +6,7 @@
     <div class="text-center py-3">
         <h1>Formulaire de connnexion</h1>
 
-        <form action="/login" method="POST">
+        <form action="/login" method="POST" id="loginForm">
             <label for="email">Email</label>
             <input type="email" name="email" id="email">
 
@@ -15,5 +15,7 @@
 
             <button type="submit" id="loginBtn">Se connecter</button>
         </form>
+
+        <div id="login-error" style="color: red;"></div>
     </div>
 {% endblock %}

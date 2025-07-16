@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Api\User;
 
 use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
@@ -12,10 +12,10 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
-class UserController extends AbstractController
+class GetRegisterAction extends AbstractController
 {
     #[Route('/api/register', name: 'app_register', methods: ['POST'])]
-    public function register(
+    public function __invoke(
         Request $request,
         UserPasswordHasherInterface $passwordHasher,
         EntityManagerInterface $entityManager,

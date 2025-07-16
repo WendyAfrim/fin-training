@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Front\Security;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -10,13 +10,8 @@ use Symfony\Component\Routing\Attribute\Route;
 class SecurityController extends AbstractController
 {
     #[Route(path:'/login', name: 'app_login')]
-    public function login(Request $request): Response
+    public function login(): Response
     {
-        if ($request->isMethod('POST')) {
-            $email = $request->request->get('email');
-            $password = $request->request->get('password');
-        }
-
         return $this->render('security/login.html.twig');
     }
 }
