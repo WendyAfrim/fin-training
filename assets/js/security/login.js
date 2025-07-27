@@ -1,4 +1,4 @@
-import { saveToken } from "./services/tokenService";
+import {saveRefreshToken, saveToken} from "./services/tokenService";
 import {apiFetch} from "../api/apiClient";
 
 function handleLoginForm() {
@@ -15,27 +15,23 @@ function handleLoginForm() {
             }
 
             try {
-                // const response = await fetch('/api/login', {
-                //     method: 'POST',
-                //     headers: {'Content-Type': 'application/json'},
-                //     body: JSON.stringify(data)
-                // })
-                const response = apiFetch('/api/login', {
+                const response = await apiFetch('/api/login', {
                     method: 'POST',
-                    body: JSON.stringify(data)
+                    body: JSON.stringify(data),
+                    bypassAuth: true
                 })
-    
-                if (!response.ok) {
-                    throw new Error('Identifiant et/ou mot de passe erronés');
-                }
 
-                const result = await response.json();
-                saveToken(result.token);
+                saveToken(response.token);
+                saveRefreshToken(response.refresh_token);
 
                 window.location.href = '/profile';
             } catch (e) {
                 const errorDiv = document.getElementById('login-error');
-                errorDiv.textContent = e.message;
+                if (errorDiv) {
+                    errorDiv.textContent = e.message;
+                } else {
+                    console.error(e.message)
+                }
             }
         })
     }

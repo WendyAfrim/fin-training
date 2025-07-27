@@ -7,3 +7,6 @@ controllers:
 # config/routes.yaml
 api_login_check:
     path: /api/login
+
+api_refresh_token:
+    path: /api/refresh/token
