@@ -7,7 +7,6 @@ async function getUserProfile()
         if (profileDiv) {
             try {
                 const data = await apiFetch('/api/profile');
-
                 profileDiv.textContent = data.email;
             } catch (error) {
                 profileDiv.textContent = error.message

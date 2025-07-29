@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Formulaire d'inscription {% endblock %}
+
+{% block body %}
+    <h1 class="text-center pt-3">Formulaire d'inscription</h1>
+    <form action="/register" method="POST" id="register-form" data-turbo="false">
+        <label for="email">Email</label>
+        <input type="email" name="email" id="email">
+        <div class="error-message" id="error-email" style="color:red;"></div>
+
+        <label for="password">Mot de passe</label>
+        <input type="password" name="password" id="password">
+        <div class="error-message" id="error-password" style="color:red;"></div>
+
+        <input type="submit" value="Envoyer">
+        <div id="register-error" class="text-center" style="color: red;"></div>
+        <div id="register-success" class="text-center" style="color: green;"></div>
+    </form>
+{% endblock %}

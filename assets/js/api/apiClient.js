@@ -1,4 +1,4 @@
-import {getRefreshToken, getToken} from "../security/services/tokenService";
+import {getToken} from "../security/services/tokenService";
 import {refreshToken} from "../security/refreshToken";
 
 export async function apiFetch(url, options = {})
@@ -12,7 +12,6 @@ export async function apiFetch(url, options = {})
 
     if (!options.bypassAuth) {
         const token = getToken();
-
 
         if(token) {
             headers['Authorization'] = `Bearer ${token}`;
@@ -64,11 +63,14 @@ export async function apiFetch(url, options = {})
                     }
 
                     return await retryCall.json();
+                } else {
+                    window.location.href = '/login';
                 }
             }
         }
 
         return await response.json();
+
     } catch (error) {
         console.error(error);
         throw error;
